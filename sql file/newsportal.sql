@@ -126,41 +126,26 @@ CREATE TABLE `tblposts` (
   `id` int(11) NOT NULL,
   `PostTitle` longtext DEFAULT NULL,
   `CategoryId` int(11) DEFAULT NULL,
-  `SubCategoryId` int(11) DEFAULT NULL,
   `PostDetails` longtext CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `PostingDate` timestamp NULL DEFAULT current_timestamp(),
   `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `Is_Active` int(1) DEFAULT NULL,
-  `Is_Approved` int(1) DEFAULT 0, -- New column for approval status, default is 0 (not approved)
   `PostUrl` mediumtext DEFAULT NULL,
   `PostImage` varchar(255) DEFAULT NULL,
   `viewCounter` int(11) DEFAULT NULL,
   `postedBy` varchar(255) DEFAULT NULL,
   `lastUpdatedBy` varchar(255) DEFAULT NULL,
+  `Is_Approved` int(1) DEFAULT 0, -- New column for approval status, default is 0 (not approved)
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Dumping data for table `tblposts`
 
-INSERT INTO `tblposts` (`id`, `PostTitle`, `CategoryId`, `SubCategoryId`, `PostDetails`, `PostingDate`, `UpdationDate`, `Is_Active`, `Is_Approved`, `PostUrl`, `PostImage`, `viewCounter`, `postedBy`, `lastUpdatedBy`) VALUES
-(1, "Ghana's Economy Shows Resilience Amid Global Challenges", 101, 201, "Accra, Ghana - Despite the ongoing global economic challenges, Ghana's economy has demonstrated remarkable resilience. The country's GDP growth rate for the first quarter of 2024 exceeded expectations, reaching 6.5%. Key sectors such as agriculture, mining, and services have contributed significantly to this growth. The government's prudent fiscal policies and investment in infrastructure projects have played a crucial role in sustaining economic momentum. Experts predict that Ghana's economy will continue to thrive, attracting foreign investors and fostering job creation. As the nation celebrates its 65th independence anniversary, citizens are optimistic about the future.", '2024-04-03 10:00:00', '2024-04-03 14:30:00', 1, 1, 'https://ghananews.com/economy-resilience', 'ghananews_economy.jpg', 1200, 'Ghana News Agency', 'Economic Analyst');
+INSERT INTO `tblposts` (`id`, `PostTitle`, `CategoryId`, `PostDetails`, `PostingDate`, `UpdationDate`, `Is_Active`, `Is_Approved`, `PostUrl`, `PostImage`, `viewCounter`, `postedBy`, `lastUpdatedBy`) VALUES
+(1, "Ghana's Economy Shows Resilience Amid Global Challenges", 101,  "Accra, Ghana - Despite the ongoing global economic challenges, Ghana's economy has demonstrated remarkable resilience. The country's GDP growth rate for the first quarter of 2024 exceeded expectations, reaching 6.5%. Key sectors such as agriculture, mining, and services have contributed significantly to this growth. The government's prudent fiscal policies and investment in infrastructure projects have played a crucial role in sustaining economic momentum. Experts predict that Ghana's economy will continue to thrive, attracting foreign investors and fostering job creation. As the nation celebrates its 65th independence anniversary, citizens are optimistic about the future.", '2024-04-03 10:00:00', '2024-04-03 14:30:00', 1, 1, 'https://ghananews.com/economy-resilience', 'ghananews_economy.jpg', 1200, 'Ghana News Agency', 'Economic Analyst');
 
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `tblsubcategory`
---
-
-CREATE TABLE `tblsubcategory` (
-  `SubCategoryId` int(11) NOT NULL,
-  `CategoryId` int(11) DEFAULT NULL,
-  `Subcategory` varchar(255) DEFAULT NULL,
-  `SubCatDescription` mediumtext DEFAULT NULL,
-  `PostingDate` timestamp NOT NULL DEFAULT current_timestamp(),
-  `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
-  `Is_Active` int(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `tblsubcategory`
@@ -255,16 +240,6 @@ ALTER TABLE `tblposts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `tblsubcategory`
---
-ALTER TABLE `tblsubcategory`
-  MODIFY `SubCategoryId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- Constraints for dumped tables
---
-
---
 -- Constraints for table `tblcomments`
 --
 ALTER TABLE `tblcomments`
@@ -275,16 +250,5 @@ ALTER TABLE `tblcomments`
 --
 ALTER TABLE `tblposts`
   ADD CONSTRAINT `postcatid` FOREIGN KEY (`CategoryId`) REFERENCES `tblcategory` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `postsucatid` FOREIGN KEY (`SubCategoryId`) REFERENCES `tblsubcategory` (`SubCategoryId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `subadmin` FOREIGN KEY (`postedBy`) REFERENCES `tbladmin` (`AdminUserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
---
--- Constraints for table `tblsubcategory`
---
-ALTER TABLE `tblsubcategory`
-  ADD CONSTRAINT `catid` FOREIGN KEY (`CategoryId`) REFERENCES `tblcategory` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -21,57 +21,62 @@ include('includes/config.php');
     <!-- Custom styles for this template -->
     <link href="css/modern-business.css" rel="stylesheet">
 
-  </head>
 
-  <body>
-  
+    </head>
 
+
+    <body class="fixed-left">
+
+        <div id="wrapper">         
+            <div class="content-page">
+              
+                <div class="content">
+                    <div class="container">
+                        <div class="row">
+              <div class="col-xs-12">
+                <div class="page-title-box">
+                                    <h4 class="page-title">Add Post </h4>
+                                </div>
+              </div>
+            </div>
+
+ 
   <?php 
-  
-  include('includes/header.php');
-  
-  if(strlen($_SESSION['login'])==0)
-    { 
-  header('location:index.php');
-  }
-  else{
-  // For adding post  
-  if(isset($_POST['submit']))
-  {
-  $posttitle=$_POST['posttitle'];
-  $catid=$_POST['category'];
+    $msg = "";
+    $error = "";
 
-  $postdetails=addslashes($_POST['postdescription']);
-  $postedby=$_SESSION['login'];
-  $arr = explode(" ",$posttitle);
-  $url=implode("-",$arr);
-  $imgfile=$_FILES["postimage"]["name"];
-  $extension = substr($imgfile,strlen($imgfile)-4,strlen($imgfile));
-  }
-  // allowed extensions
-  $allowed_extensions = array(".jpg","jpeg",".png",".gif");
-  if(!in_array($extension,$allowed_extensions))
-  {
-  
-  }
-  else
-  {$imgnewfile=md5($imgfile).$extension;
-  // Code for move image into directory
-  move_uploaded_file($_FILES["postimage"]["tmp_name"],"postimages/".$imgnewfile);
-
-  $status=1;
-  $query=mysqli_query($con,"insert into tblposts(PostTitle,CategoryId,SubCategoryId,PostDetails,PostUrl,Is_Active,PostImage,postedBy) values('$posttitle','$catid','$subcatid','$postdetails','$url','$status','$imgnewfile','$postedby')");
-  if($query)
-  {
-  $msg="Post successfully added ";
-  }
-  else{
-  $error="Something went wrong . Please try again.";    
-  } 
-
-  }
-  }
+    // For adding post  
+    if(isset($_POST['submit'])) {
+        $posttitle = $_POST['posttitle'];
+        $catid = $_POST['category'];
+        $postdetails = addslashes($_POST['postdescription']);
+        $postedby = $_SESSION['login'];
+        $arr = explode(" ",$posttitle);
+        $url = implode("-",$arr);
+        $imgfile = $_FILES["postimage"]["name"];
+        // get the image extension
+        $extension = substr($imgfile,strlen($imgfile)-4,strlen($imgfile));
+        // allowed extensions
+        $allowed_extensions = array(".jpg","jpeg",".png",".gif");
+        if(!in_array($extension,$allowed_extensions)) {
+            echo "<script>alert('Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
+        }
+        else {
+            $imgnewfile = md5($imgfile).$extension;
+            // Code for move image into directory
+            move_uploaded_file($_FILES["postimage"]["tmp_name"],"admin/postimages/".$imgnewfile);
+            $status = 0; // Initially set status to 0 (not approved)
+            $query = mysqli_query($con,"INSERT INTO tblposts(PostTitle, CategoryId,  PostDetails, PostUrl, Is_Active, Is_Approved, PostImage, postedBy) VALUES ('$posttitle', '$catid', '$postdetails', '$url', 1, '$status', '$imgnewfile', '$postedby')");
+            if($query) {
+                $msg = "Post submitted for approval. It will appear on the news page after admin approval.";
+            }
+            else {
+                $error = "Something went wrong. Please try again.";    
+            } 
+        }
+    }
   ?>
+
   <!DOCTYPE html>
   <html lang="en">
       <head>
@@ -104,43 +109,8 @@ include('includes/config.php');
           <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
       <link rel="stylesheet" href="../plugins/switchery/switchery.min.css">
           <script src="assets/js/modernizr.min.js"></script>
-  <script>
-  function getSubCat(val) {
-    $.ajax({
-    type: "POST",
-    url: "get_subcategory.php",
-    data:'catid='+val,
-    success: function(data){
-      $("#subcategory").html(data);
-    }
-    });
-    }
-    </script>
-      </head>
-
-
-      <body class="fixed-left">
-
-          <div id="wrapper">
-
-            <?php include('includes/topheader.php');?>
-              <?php include('includes/leftsidebar.php');?>
-              
-              <div class="content-page">
-                
-                  <div class="content">
-                      <div class="container">
-
-
-                          <div class="row">
-                <div class="col-xs-12">
-                  <div class="page-title-box">
-                                      <h4 class="page-title">Add Post </h4>
-                                  </div>
-                </div>
-              </div>
-                      =
-
+  
+      
   <div class="row">
   <div class="col-sm-6">  
   <!---Success Message--->  

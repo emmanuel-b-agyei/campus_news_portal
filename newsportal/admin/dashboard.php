@@ -91,21 +91,6 @@ $countcat=mysqli_num_rows($query);
                                     </div>
                                 </div>
                             </div></a><!-- end col -->
-<a href="manage-subcategories.php">
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                <div class="card-box widget-box-one">
-                                    <i class="mdi mdi-layers widget-one-icon"></i>
-                                    <div class="wigdet-one-content">
-                                        <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="User This Month">Listed Subcategories</p>
-<?php $query=mysqli_query($con,"select * from tblsubcategory where Is_Active=1");
-$countsubcat=mysqli_num_rows($query);
-?>
-                                        <h2><?php echo htmlentities($countsubcat);?> <small></small></h2>
-                              
-                                    </div>
-                                </div>
-                            </div><!-- end col -->
-</a>
 
      <a href="manage-posts.php">                       
         <div class="col-lg-4 col-md-4 col-sm-6">
@@ -147,16 +132,7 @@ $countposts=mysqli_num_rows($query);
                     </div> <!-- container -->
 
                 </div> <!-- content -->
-<?php include('includes/footer.php');?>
-
             </div>
-
-
-            <!-- ============================================================== -->
-            <!-- End Right content here -->
-            <!-- ============================================================== -->
-
-
             <!-- Right Sidebar -->
             <div class="side-bar right-bar">
                 <a href="javascript:void(0);" class="right-bar-toggle">
