@@ -1,20 +1,20 @@
 <?php
 // Check if constants are not defined before defining them
-if (!defined('DB_SERVER')) {
-    define('DB_SERVER','aucampusne-d590d19f01f6c14a97913087-dbserver.mysql.database.azure.com');
+if (!defined('DATABASE_HOST')) {
+    define('DATABASE_HOST','aucampusne-d590d19f01f6c14a97913087-dbserver.mysql.database.azure.com');
 }
-if (!defined('DB_USER')) {
-    define('DB_USER','rjhssdtnxn');
+if (!defined('DATABASE_USERNAME')) {
+    define('DATABASE_USERNAME','rjhssdtnxn');
 }
-if (!defined('DB_PASS')) {
-    define('DB_PASS','8PbYf0ZkBBw$oxhK');
+if (!defined('DATABASE_PASSWORD')) {
+    define('DATABASE_PASSWORD','8PbYf0ZkBBw$oxhK');
 }
-if (!defined('DB_NAME')) {
-    define('DB_NAME','aucampusne_d590d19f01f6c14a97913087_database');
+if (!defined('DATABASE_NAME')) {
+    define('DATABASE_NAME','aucampusne_d590d19f01f6c14a97913087_database');
 }
 
 // Create database connection
-$con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+$con = mysqli_connect(DATABASE_HOST, DATABASE_NAME, DATABASE_PASSWORD, DATABASE_NAME);
 
 // Check connection
 if (mysqli_connect_errno()) {
