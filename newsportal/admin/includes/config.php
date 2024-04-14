@@ -10,7 +10,7 @@ if (!defined('DATABASE_PASSWORD')) {
     define('DATABASE_PASSWORD','8PbYf0ZkBBw$oxhK');
 }
 if (!defined('DATABASE_NAME')) {
-    define('DATABASE_NAME','aucampusne_d590d19f01f6c14a97913087_database');
+    define('DATABASE_NAME','newsportal');
 }
 
 // Create database connection
