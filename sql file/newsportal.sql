@@ -92,8 +92,7 @@ CREATE TABLE `tblcomments` (
 --
 
 INSERT INTO `tblcomments` (`id`, `postId`, `name`, `email`, `comment`, `postingDate`, `status`) VALUES
-(1, 1, "Emmanuel", "elminosunshine@gmail.com", "Is that really?", C
-URRENT_TIMESTAMP, 1);
+(1, 1, "Emmanuel", "elminosunshine@gmail.com", "Is that really?", CURRENT_TIMESTAMP, 1);
 
 -- --------------------------------------------------------
 
