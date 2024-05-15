@@ -104,16 +104,7 @@ while ($row=mysqli_fetch_array($query)) {
         <li class="page-item"><a href="?pageno=<?php echo $total_pages; ?>" class="page-link">Last</a></li>
     </ul>
 <?php } ?>
-       
-
-      
-
-          <!-- Pagination -->
-
-
-
-
-        </div>
+         </div>
 
         <!-- Sidebar Widgets Column -->
       <?php include('includes/sidebar.php');?>
@@ -121,12 +112,7 @@ while ($row=mysqli_fetch_array($query)) {
       <!-- /.row -->
 
     </div>
-    <!-- /.container -->
-
-    <!-- Footer -->
-      <?php include('includes/footer.php');?>
-
-
+  
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

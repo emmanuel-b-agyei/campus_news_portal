@@ -156,6 +156,10 @@ $pt=$row['postdetails'];
  <input type="email" name="email" class="form-control" placeholder="Enter your Valid email" required>
  </div>
 
+ <div class="form-group">
+ <input type="number" name="phone" class="form-control" placeholder = "Enter Phone" required>
+</div>
+
 
                 <div class="form-group">
                   <textarea class="form-control" name="comment" rows="3" placeholder="Comment" required></textarea>
@@ -177,6 +181,7 @@ while ($row=mysqli_fetch_array($query)) {
             <div class="media-body">
               <h5 class="mt-0"><?php echo htmlentities($row['name']);?> <br />
                   <span style="font-size:11px;"><b>at</b> <?php echo htmlentities($row['postingDate']);?></span>
+                  <?php echo htmlentities($row['']);?>
             </h5>
            
              <?php echo htmlentities($row['comment']);?>            </div>

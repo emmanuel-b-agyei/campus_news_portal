@@ -1,29 +1,12 @@
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Mar 03, 2024 at 06:24 PM
--- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `newsportal`
---
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tbladmin`
 --
 
@@ -92,8 +75,7 @@ CREATE TABLE `tblcomments` (
 --
 
 INSERT INTO `tblcomments` (`id`, `postId`, `name`, `email`, `comment`, `postingDate`, `status`) VALUES
-(1, 1, "Emmanuel", "elminosunshine@gmail.com", "Is that really?", C
-URRENT_TIMESTAMP, 1);
+(1, 1, "Emmanuel", "elminosunshine@gmail.com", "Is that really?", CURRENT_TIMESTAMP, 1);
 
 -- --------------------------------------------------------
 
@@ -146,21 +128,6 @@ INSERT INTO `tblposts` (`id`, `PostTitle`, `CategoryId`, `PostDetails`, `Posting
 
 
 -- --------------------------------------------------------
-
---
--- Dumping data for table `tblsubcategory`
---
-
-INSERT INTO `tblsubcategory` (`SubCategoryId`, `CategoryId`, `Subcategory`, `SubCatDescription`, `PostingDate`, `UpdationDate`, `Is_Active`) VALUES
-(5, 3, 'Football', 'Football', '2024-01-14 18:30:00', '2024-01-31 05:48:39', 1),
-(6, 5, 'Television', 'TeleVision', '2024-01-14 18:30:00', '2024-01-31 05:48:39', 1),
-(7, 6, 'National', 'National', '2024-01-14 18:30:00', '2024-01-31 05:48:39', 1),
-(8, 6, 'International', 'International', '2024-01-14 18:30:00', '2024-01-31 05:48:39', 1);
-
---
--- Indexes for dumped tables
---
-
 --
 -- Indexes for table `tbladmin`
 --
@@ -195,20 +162,12 @@ ALTER TABLE `tblposts`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id` (`id`),
   ADD KEY `postcatid` (`CategoryId`),
-  ADD KEY `postsucatid` (`SubCategoryId`),
   ADD KEY `subadmin` (`postedBy`);
 
---
--- Indexes for table `tblsubcategory`
---
-ALTER TABLE `tblsubcategory`
-  ADD PRIMARY KEY (`SubCategoryId`),
-  ADD KEY `catid` (`CategoryId`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
-
 --
 -- AUTO_INCREMENT for table `tbladmin`
 --

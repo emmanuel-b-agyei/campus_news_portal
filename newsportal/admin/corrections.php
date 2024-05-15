@@ -1,74 +1,3 @@
-<?php
-session_start();
-include('includes/config.php');
-
-// Redirecting to login if not logged in
-if (empty($_SESSION['login'])) {
-    header('location: index.php');
-    exit;
-}
-
-// Adding new subadmin
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    //htmlspecialchars for validat
-    $username = ($_POST['sadminusername']);
-    $email = ($_POST['emailid']);
-    $password = (($_POST['pwd'])); 
-    
-    //Frontend validations
-    $errors = [];
-    if (!preg_match('/^[a-zA-Z][a-zA-Z0-9-_.]{5,12}$/', $username)) {
-        $errors[] = "Username must be alphanumeric and 6 to 12 characters.";
-    }
-
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = "Invalid email format.";
-    }
-
-    if (!preg_match("/^(?=.*[!@#$%^&*()_+\-=\[\]{};':\\|,.<>\/?])(?=.*[a-zA-Z0-9]).{8,}$/", $password)) {
-        $errors[] = "Password must be at least 8 characters long and must contain at least a special character.";
-    }
-
-    
-    
-    if (empty($errors)) {
-        // Backend checks for username and email availability
-        $checkUsernameQuery = "SELECT * FROM tbladmin WHERE AdminUserName = '$username' LIMIT 1";
-        $checkEmailQuery = "SELECT * FROM tbladmin WHERE AdminEmailId = '$email' LIMIT 1";
-        $resultUsername = mysqli_query($con, $checkUsernameQuery);
-        $resultEmail = mysqli_query($con, $checkEmailQuery);
-
-        if (mysqli_num_rows($resultUsername) > 0) {
-            $errors[] = "Username already exists.";
-        }
-        if (mysqli_num_rows($resultEmail) > 0) {
-            $errors[] = "Email already exists.";
-        }
-
-        if (empty($errors)) {
-            // Inserting subadmin details into database
-            $password = md5($password); // Hash the password
-            $query = mysqli_query($con, "INSERT INTO tbladmin(AdminUserName,AdminEmailId,AdminPassword,userType) VALUES('$username','$email','$password','0')");
-
-            if ($query) {
-                // Success message and redirect
-                echo "<script>alert('Sub-admin added successfully.');</script>";
-                echo "<script>window.location.href='add-subadmins.php';</script>";
-                exit;
-            } else {
-                $errors[] = "Something went wrong. Please try again.";
-            }
-        }
-    }
-
-    // Display errors
-    foreach ($errors as $error) {
-        echo "<script>alert('$error');</script>";
-    }
-}
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">;
 <head>
@@ -92,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <div id="wrapper">
         <!-- Including top header and left sidebar -->
         <?php include('includes/topheader.php'); ?>
-        <?php include('includes/leftsidebar.php'); ?>
+       
 
         <div class="content-page">
             <div class="content">
@@ -178,3 +107,4 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 </body>
 
 </html>
+

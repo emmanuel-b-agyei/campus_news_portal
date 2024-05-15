@@ -58,13 +58,7 @@ if($_GET['action']=='del' && $_GET['rid'])
 
             <!-- ========== Left Sidebar Start ========== -->
 <?php include('includes/leftsidebar.php');?>
-            <!-- Left Sidebar End -->
-
-
-
-            <!-- ============================================================== -->
-            <!-- Start right Content here -->
-            <!-- ============================================================== -->
+           
             <div class="content-page">
                 <!-- Start content -->
                 <div class="content">
@@ -109,13 +103,6 @@ if($_GET['action']=='del' && $_GET['rid'])
 
 
 </div>
-                                 
-                                 
-                                    
-
-
-                                   
-
 
                                     <div class="row">
 										<div class="col-md-12">
@@ -194,12 +181,7 @@ $cnt++;
 <div class="demo-box m-t-20">
 <div class="m-b-30">
 
-
  </div>
-
-
-
-
                                                 
 											</div>
 
@@ -209,22 +191,6 @@ $cnt++;
 									</div>                  
                                   
 
-
-
-                                   
-
-
-
-
-
-
-                        
-
-
-
-
-
-
                     </div> <!-- container -->
 
                 </div> <!-- content -->
@@ -232,9 +198,6 @@ $cnt++;
             </div>
 
         </div>
-        <!-- END wrapper -->
-
-
 
         <script>
             var resizefunc = [];
