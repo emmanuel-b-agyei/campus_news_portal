@@ -1,12 +1,19 @@
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
+<<<<<<< HEAD
 -- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+=======
+--
+-- Database: `newsportal`
+
+--
+>>>>>>> cc795f0fbeab16400178e1d944b96bdd18ff321a
 -- Table structure for table `tbladmin`
 --
 
@@ -27,8 +34,6 @@ CREATE TABLE `tbladmin` (
 INSERT INTO `tbladmin` (`id`, `AdminUserName`, `AdminPassword`, `AdminEmailId`, `userType`, `CreationDate`, `UpdationDate`) VALUES
 (1, 'elmino', 'f925916e2754e5e03f75dd58a5733251', 'emmanuel.agyei@ashesi.edu.gh', 1, '2024-03-21 18:30:00', '2024-03-21 05:42:52'),
 (3, 'emmanuel', 'f925916e2754e5e03f75dd58a5733251', 'agyeibrewuemmanuel@gmail.in', 0, '2024-03-21 18:40:00', '2024-03-21 05:43:01');
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `tblcategory`
@@ -53,9 +58,6 @@ INSERT INTO `tblcategory` (`id`, `CategoryName`, `Description`, `PostingDate`, `
 (6, 'Politics', 'Politics', '2024-01-11 18:30:00', '2024-01-31 05:43:25', 1),
 (7, 'Business', 'Business', '2024-01-11 18:30:00', '2024-01-31 05:43:25', 1),
 (8, 'COVID-19', 'COVID-19', '2024-01-11 18:30:00', '2024-01-31 05:43:25', 1);
-
--- --------------------------------------------------------
-
 --
 -- Table structure for table `tblcomments`
 --
@@ -76,8 +78,11 @@ CREATE TABLE `tblcomments` (
 
 INSERT INTO `tblcomments` (`id`, `postId`, `name`, `email`, `comment`, `postingDate`, `status`) VALUES
 (1, 1, "Emmanuel", "elminosunshine@gmail.com", "Is that really?", CURRENT_TIMESTAMP, 1);
+<<<<<<< HEAD
 
 -- --------------------------------------------------------
+=======
+>>>>>>> cc795f0fbeab16400178e1d944b96bdd18ff321a
 
 --
 -- Table structure for table `tblpages`
@@ -98,9 +103,6 @@ CREATE TABLE `tblpages` (
 
 INSERT INTO `tblpages` (`id`, `PageName`, `PageTitle`, `Description`, `PostingDate`, `UpdationDate`) VALUES 
 (1, 'aboutus', 'About Us - Campus News Portal', "Welcome to the Campus News Portal, a project developed by Emmanuel Brewu Agyei. This platform is designed to provide students with a seamless experience for sharing and accessing news articles related to campus life and global updates. With user roles and authentication in place, including admins, editors, and registered users, we ensure a secure and engaging environment for news submission and publication. Our  mission is to enhance communication and information sharing within the Ashesi community and beyond. Join us in exploring the latest news, engaging in discussions, and staying informed about campus matters and the world around us.", CURRENT_TIMESTAMP, NULL);
-
-
--- --------------------------------------------------------
 
 -- Table structure for table `tblposts`
 
@@ -126,8 +128,11 @@ CREATE TABLE `tblposts` (
 INSERT INTO `tblposts` (`id`, `PostTitle`, `CategoryId`, `PostDetails`, `PostingDate`, `UpdationDate`, `Is_Active`, `Is_Approved`, `PostUrl`, `PostImage`, `viewCounter`, `postedBy`, `lastUpdatedBy`) VALUES
 (1, "Ghana's Economy Shows Resilience Amid Global Challenges", 101,  "Accra, Ghana - Despite the ongoing global economic challenges, Ghana's economy has demonstrated remarkable resilience. The country's GDP growth rate for the first quarter of 2024 exceeded expectations, reaching 6.5%. Key sectors such as agriculture, mining, and services have contributed significantly to this growth. The government's prudent fiscal policies and investment in infrastructure projects have played a crucial role in sustaining economic momentum. Experts predict that Ghana's economy will continue to thrive, attracting foreign investors and fostering job creation. As the nation celebrates its 65th independence anniversary, citizens are optimistic about the future.", '2024-04-03 10:00:00', '2024-04-03 14:30:00', 1, 1, 'https://ghananews.com/economy-resilience', 'ghananews_economy.jpg', 1200, 'Ghana News Agency', 'Economic Analyst');
 
+<<<<<<< HEAD
 
 -- --------------------------------------------------------
+=======
+>>>>>>> cc795f0fbeab16400178e1d944b96bdd18ff321a
 --
 -- Indexes for table `tbladmin`
 --
