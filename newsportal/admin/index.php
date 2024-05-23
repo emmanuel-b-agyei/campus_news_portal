@@ -1,27 +1,25 @@
 <?php
  session_start();
-//Database Configuration File
-include('includes/config.php');
-//error_reporting(0);
-if(isset($_POST['login']))
-  {
- 
-    // Getting username/ email and password
-     $uname=$_POST['username'];
-    $password=md5($_POST['password']);
-    // Fetch data from database on the basis of username/email and password
-$sql =mysqli_query($con,"SELECT AdminUserName,AdminEmailId,AdminPassword,userType FROM tbladmin WHERE (AdminUserName='$uname' && AdminPassword='$password')");
- $num=mysqli_fetch_array($sql);
-if($num>0)
-{
 
-$_SESSION['login']=$_POST['username'];
-$_SESSION['utype']=$num['userType'];
-    echo "<script type='text/javascript'> document.location = 'dashboard.php'; </script>";
-  }else{
-echo "<script>alert('Invalid Details');</script>";
-  }
+include('includes/config.php');
+
+if(isset($_POST['login'])){
  
+    // Getting username and password
+    $uname=htmlspecialchars($_POST['username']);
+    $password=md5($_POST['password']);
+  
+
+    // Fetching data from database on the basis of username and password
+    $sql =mysqli_query($con,"SELECT AdminUserName,AdminEmailId,AdminPassword,userType FROM tbladmin WHERE (AdminUserName='$uname' && AdminPassword='$password')");
+    $num=mysqli_fetch_array($sql);
+    if($num>0) {
+        $_SESSION['login']=$_POST['username'];
+        $_SESSION['utype']=$num['userType'];
+            echo "<script type='text/javascript'> document.location = 'dashboard.php'; </script>";
+    }else{
+        echo "<script>alert('Invalid Details');</script>";
+    }
 }
 ?>
 

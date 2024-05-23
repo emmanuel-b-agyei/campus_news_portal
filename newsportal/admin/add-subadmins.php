@@ -11,8 +11,8 @@ if (empty($_SESSION['login'])) {
 // Adding new subadmin
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     //htmlspecialchars for validat
-    $username = ($_POST['sadminusername']);
-    $email = ($_POST['emailid']);
+    $username = htmlspecialchars($_POST['sadminusername']);
+    $email = htmlspecialchars($_POST['emailid']);
     $password = (($_POST['pwd'])); 
     
     //Frontend validations

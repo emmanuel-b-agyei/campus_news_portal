@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Register Exercise</title>
+</head>
+<body>
+
+<form id="register" method="POST">
+  <label> Name: </label> <input type="text" name="name" /> <br><br>
+  <label> Email: </label> <input typ="text" name="email" /> <br><br>
+  <label> Password: </label> <input type="text" name="password" /> <br><br>
+  Confirm Password: <input type="text" name="confirmPwd" /> <br><br>
+  <input type="submit" name="submit"/>
+</form>
+</body>
+</html>
+
+
+<script>
+const registerForm = document.getElementById('register');
+$(document).ready(function() {
+	$("registerForm").submit(function(e){
+    	e.preventDefault();
+    	var formData = {
+        	name: $("name").val(),
+            email: $("email").val()
+        };
+       	
+        $.ajax({
+        type: "POST",
+        url: "",
+        data: formData,
+        dataType: 'json',
+        encode: true,
+        }).done(function(data){console.log(data); });
+    });
+});
+    
+</script>
+
