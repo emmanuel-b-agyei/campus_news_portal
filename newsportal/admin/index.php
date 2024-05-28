@@ -105,7 +105,7 @@ if (isset($_POST['login'])) {
                                 <a href="../index.php"><i class="mdi mdi-home"></i> Back Home</a>
                             </div>
                         </div>
-                 0   </div>
+                    </div>
                 </div>
             </div>
         </div>
