@@ -71,6 +71,7 @@ if(strlen($_SESSION['login'])==0) {
 
                     <!-- Dashboard Widgets -->
                     <div class="row">
+                        
                         <!-- Categories Listed -->
                         <div class="col-lg-4 col-md-4 col-sm-6">
                             <a href="manage-categories.php">
@@ -104,11 +105,7 @@ if(strlen($_SESSION['login'])==0) {
                                 </div>
                             </a>
                         </div>
-                    </div>
-                    <!-- End Dashboard Widgets -->
 
-                    <!-- Additional Widgets -->
-                    <div class="row">
                         <!-- Trash News -->
                         <div class="col-lg-4 col-md-4 col-sm-6">
                             <a href="trash-posts.php">
@@ -126,7 +123,7 @@ if(strlen($_SESSION['login'])==0) {
                             </a>
                         </div>
                     </div>
-                    <!-- End Additional Widgets -->
+                    <!-- End Dashboard Widgets -->
                 </div> <!-- Container -->
             </div> <!-- Content -->
         </div> <!-- Content Page -->
