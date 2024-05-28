@@ -3,7 +3,10 @@
         <!-- Sidemenu -->
         <div id="sidebar-menu">
             <ul>
+                <!-- Menu Title -->
                 <li class="menu-title">Navigation</li>
+                
+                <!-- Dashboard Link -->
                 <li class="has_sub">
                     <a href="dashboard.php" class="waves-effect">
                         <i class="mdi mdi-view-dashboard"></i>
@@ -11,6 +14,7 @@
                     </a>
                 </li>
                 
+                <!-- Sub-admin Section: Visible only for admin users -->
                 <?php if($_SESSION['utype'] == '1'): ?>
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect">
@@ -25,6 +29,7 @@
                 </li>
                 <?php endif; ?>
 
+                <!-- Category Section -->
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect">
                         <i class="mdi mdi-format-list-bulleted"></i>
@@ -37,6 +42,7 @@
                     </ul>
                 </li>
 
+                <!-- Posts Section -->
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect">
                         <i class="mdi mdi-format-list-bulleted"></i>
@@ -50,6 +56,7 @@
                     </ul>
                 </li>  
 
+                <!-- Comments Section -->
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect">
                         <i class="mdi mdi-format-list-bulleted"></i>
@@ -60,8 +67,9 @@
                         <li><a href="unapprove-comment.php">Waiting for Approval</a></li>
                         <li><a href="manage-comments.php">Approved Comments</a></li>
                     </ul>
-                </li>
+                </li>   
 
+                <!-- Pages Section -->
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect">
                         <i class="mdi mdi-format-list-bulleted"></i>
