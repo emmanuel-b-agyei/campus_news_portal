@@ -92,7 +92,7 @@ if (isset($_POST['login'])) {
                                     </div>
                                     <div class="form-group">
                                         <div class="col-xs-12">
-                                            <a href="forgot-password.php"><i class="mdi mdi-lock"></i> Forgot your password?</a>
+                                            <a href=""><i class="mdi mdi-lock"></i> Forgot your password?</a>
                                         </div>
                                     </div>
                                     <div class="form-group account-btn text-center m-t-10">
