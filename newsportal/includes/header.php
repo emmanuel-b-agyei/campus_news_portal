@@ -6,16 +6,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-              <a class="nav-link" href="index.php">Home</a>
-            </li>
-            
-                 <li class="nav-item">
+            <li class="nav-item">
               <a class="nav-link" href="index.php">News</a>
             </li>
 
              <li class="nav-item">
-              <a class="nav-link" href="add-new-post.php">Add Post</a>
+              <a class="nav-link" href="add-new-post.php">Add News</a>
             </li>
 
             <li class="nav-item">
