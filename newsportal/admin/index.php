@@ -90,11 +90,7 @@ if (isset($_POST['login'])) {
                                             <?php } ?>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="col-xs-12">
-                                            <a href=""><i class="mdi mdi-lock"></i> Forgot your password?</a>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="form-group account-btn text-center m-t-10">
                                         <div class="col-xs-12">
                                             <button class="btn w-md btn-bordered btn-danger waves-effect waves-light" type="submit" name="login">Log In</button>
