@@ -7,20 +7,26 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="index.php">News</a>
+              <button class="btn btn-secondary" style="margin: 5px;">
+                <a class="nav-link" href="index.php">News</a>
+              </button>
             </li>
 
              <li class="nav-item">
-              <a class="nav-link" href="add-new-post.php">Add News</a>
+              <button class="btn btn-secondary" style="margin: 5px;">
+                <a class="nav-link" href="add-new-post.php"> Add</a>
+              </button>
+             </i>
+              
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="about-us.php">About</a>
+              <button class="btn btn-secondary" style="margin: 5px;">
+                <a class="nav-link" href="about-us.php">About</a>
+              </button>
             </li>
             
-            <li class="nav-item">
-              <a class="nav-link" href="admin/">Admin</a>
-            </li>
+            
   
           </ul>
         </div>
