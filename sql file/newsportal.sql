@@ -1,19 +1,6 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
-<<<<<<< HEAD
--- PHP Version: 8.2.4
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-=======
---
+-- 
 -- Database: `newsportal`
-
 --
->>>>>>> cc795f0fbeab16400178e1d944b96bdd18ff321a
 -- Table structure for table `tbladmin`
 --
 
@@ -78,11 +65,6 @@ CREATE TABLE `tblcomments` (
 
 INSERT INTO `tblcomments` (`id`, `postId`, `name`, `email`, `comment`, `postingDate`, `status`) VALUES
 (1, 1, "Emmanuel", "elminosunshine@gmail.com", "Is that really?", CURRENT_TIMESTAMP, 1);
-<<<<<<< HEAD
-
--- --------------------------------------------------------
-=======
->>>>>>> cc795f0fbeab16400178e1d944b96bdd18ff321a
 
 --
 -- Table structure for table `tblpages`
@@ -128,11 +110,6 @@ CREATE TABLE `tblposts` (
 INSERT INTO `tblposts` (`id`, `PostTitle`, `CategoryId`, `PostDetails`, `PostingDate`, `UpdationDate`, `Is_Active`, `Is_Approved`, `PostUrl`, `PostImage`, `viewCounter`, `postedBy`, `lastUpdatedBy`) VALUES
 (1, "Ghana's Economy Shows Resilience Amid Global Challenges", 101,  "Accra, Ghana - Despite the ongoing global economic challenges, Ghana's economy has demonstrated remarkable resilience. The country's GDP growth rate for the first quarter of 2024 exceeded expectations, reaching 6.5%. Key sectors such as agriculture, mining, and services have contributed significantly to this growth. The government's prudent fiscal policies and investment in infrastructure projects have played a crucial role in sustaining economic momentum. Experts predict that Ghana's economy will continue to thrive, attracting foreign investors and fostering job creation. As the nation celebrates its 65th independence anniversary, citizens are optimistic about the future.", '2024-04-03 10:00:00', '2024-04-03 14:30:00', 1, 1, 'https://ghananews.com/economy-resilience', 'ghananews_economy.jpg', 1200, 'Ghana News Agency', 'Economic Analyst');
 
-<<<<<<< HEAD
-
--- --------------------------------------------------------
-=======
->>>>>>> cc795f0fbeab16400178e1d944b96bdd18ff321a
 --
 -- Indexes for table `tbladmin`
 --
@@ -214,5 +191,4 @@ ALTER TABLE `tblcomments`
 --
 ALTER TABLE `tblposts`
   ADD CONSTRAINT `postcatid` FOREIGN KEY (`CategoryId`) REFERENCES `tblcategory` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `subadmin` FOREIGN KEY (`postedBy`) REFERENCES `tbladmin` (`AdminUserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
+  ADD CONSTRAINT `subadmin` FOREIGN KEY (`postedBy`) REFERENCES `tbladmin` (`AdminUserName`) ON DELETE NO ACTION ON UPDATE NO ACTION
