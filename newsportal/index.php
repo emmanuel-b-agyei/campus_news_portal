@@ -15,7 +15,7 @@ include('includes/connection.php');
     <meta name="description" content="AU Campus News Portal">
     <meta name="author" content="">
 
-    <title>AU Campus News Portal | Home Page</title>
+    <title> Campus News Portal | Home Page</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -48,11 +48,9 @@ include('includes/connection.php');
 
                 // Fetch approved posts
                 $query = mysqli_query($con, "SELECT tblposts.id AS pid, tblposts.PostTitle AS posttitle, tblposts.PostImage, 
-                        tblcategory.CategoryName AS category, tblcategory.id AS cid, tblsubcategory.Subcategory AS subcategory, 
-                        tblposts.PostDetails AS postdetails, tblposts.PostingDate AS postingdate, tblposts.PostUrl AS url 
+                        tblcategory.CategoryName AS category, tblcategory.id AS cid, tblposts.PostDetails AS postdetails, tblposts.PostingDate AS postingdate, tblposts.PostUrl AS url 
                         FROM tblposts 
                         LEFT JOIN tblcategory ON tblcategory.id = tblposts.CategoryId 
-                        LEFT JOIN tblsubcategory ON tblsubcategory.SubCategoryId = tblposts.SubCategoryId 
                         WHERE tblposts.IS_Approved = 1 
                         ORDER BY tblposts.id DESC 
                         LIMIT $offset, $no_of_records_per_page");
@@ -61,15 +59,12 @@ include('includes/connection.php');
                 while ($row = mysqli_fetch_array($query)) {
                 ?>
                     <div class="card mb-4">
+                        <h2 class="card-title"><?php echo htmlentities($row['posttitle']); ?></h2>
                         <img class="card-img-top" src="admin/postimages/<?php echo htmlentities($row['PostImage']); ?>" alt="<?php echo htmlentities($row['posttitle']); ?>">
                         <div class="card-body">
-                            <h2 class="card-title"><?php echo htmlentities($row['posttitle']); ?></h2>
                             <p>
                                 <a class="badge bg-secondary text-decoration-none link-light" href="category.php?catid=<?php echo htmlentities($row['cid']); ?>" style="color:#fff">
                                     <?php echo htmlentities($row['category']); ?>
-                                </a>
-                                <a class="badge bg-secondary text-decoration-none link-light" style="color:#fff">
-                                    <?php echo htmlentities($row['subcategory']); ?>
                                 </a>
                             </p>
                             <a href="news-details.php?nid=<?php echo htmlentities($row['pid']); ?>" class="btn btn-primary">Read More &rarr;</a>
