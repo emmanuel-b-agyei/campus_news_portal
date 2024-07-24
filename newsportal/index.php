@@ -37,9 +37,9 @@ include('includes/connection.php');
 
                 <!-- Pagination Logic -->
                 <?php
-                $pageno = isset($_GET['pageno']) ? (int)$_GET['pageno'] : 1;
+                $page_number = isset($_GET['page_number']) ? (int)$_GET['page_number'] : 1;
                 $no_of_records_per_page = 8;
-                $offset = ($pageno - 1) * $no_of_records_per_page;
+                $offset = ($page_number - 1) * $no_of_records_per_page;
 
                 $total_pages_sql = "SELECT COUNT(*) FROM tblposts";
                 $result = mysqli_query($con, $total_pages_sql);
@@ -60,7 +60,7 @@ include('includes/connection.php');
                 ?>
                     <div class="card mb-4">
                         <h2 class="card-title"><?php echo htmlentities($row['posttitle']); ?></h2>
-                        <img class="card-img-top" src="admin/postimages/<?php echo htmlentities($row['PostImage']); ?>" alt="<?php echo htmlentities($row['posttitle']); ?>">
+                        <img class="card-img-top" src="admin/postimages/<?php echo htmlentities($row['PostImage']); ?>">
                         <div class="card-body">
                             <p>
                                 <a class="badge bg-secondary text-decoration-none link-light" href="category.php?catid=<?php echo htmlentities($row['cid']); ?>" style="color:#fff">
@@ -77,17 +77,17 @@ include('includes/connection.php');
 
                 <!-- Pagination Links -->
                 <ul class="pagination justify-content-center mb-4">
-                    <li class="page-item <?php if ($pageno <= 1) { echo 'disabled'; } ?>">
-                        <a href="?pageno=1" class="page-link">First</a>
+                    <li class="page-item <?php if ($page_number <= 1) { echo 'disabled'; } ?>">
+                        <a href="?page_number=1" class="page-link">First</a>
                     </li>
-                    <li class="page-item <?php if ($pageno <= 1) { echo 'disabled'; } ?>">
-                        <a href="<?php if ($pageno <= 1) { echo '#'; } else { echo "?pageno=" . ($pageno - 1); } ?>" class="page-link">Prev</a>
+                    <li class="page-item <?php if ($page_number <= 1) { echo 'disabled'; } ?>">
+                        <a href="<?php if ($page_number <= 1) { echo '#'; } else { echo "?page_number=" . ($page_number - 1); } ?>" class="page-link">Prev</a>
                     </li>
-                    <li class="page-item <?php if ($pageno >= $total_pages) { echo 'disabled'; } ?>">
-                        <a href="<?php if ($pageno >= $total_pages) { echo '#'; } else { echo "?pageno=" . ($pageno + 1); } ?>" class="page-link">Next</a>
+                    <li class="page-item <?php if ($page_number >= $total_pages) { echo 'disabled'; } ?>">
+                        <a href="<?php if ($page_number >= $total_pages) { echo '#'; } else { echo "?page_number=" . ($page_number + 1); } ?>" class="page-link">Next</a>
                     </li>
-                    <li class="page-item <?php if ($pageno >= $total_pages) { echo 'disabled'; } ?>">
-                        <a href="?pageno=<?php echo $total_pages; ?>" class="page-link">Last</a>
+                    <li class="page-item <?php if ($page_number >= $total_pages) { echo 'disabled'; } ?>">
+                        <a href="?page_number=<?php echo $total_pages; ?>" class="page-link">Last</a>
                     </li>
                 </ul>
 
