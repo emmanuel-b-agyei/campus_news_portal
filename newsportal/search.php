@@ -43,19 +43,8 @@ include('includes/connection.php');
                     $st = $_SESSION['searchtitle'];
                 }
 
-                // Pagination logic
-                $pageno = isset($_GET['pageno']) ? (int)$_GET['pageno'] : 1;
-                $no_of_records_per_page = 8;
-                $offset = ($pageno - 1) * $no_of_records_per_page;
-
-                // Total pages calculation
-                $total_pages_sql = "SELECT COUNT(*) FROM tblposts WHERE PostTitle LIKE '%$st%' AND Is_Active = 1";
-                $result = mysqli_query($con, $total_pages_sql);
-                $total_rows = mysqli_fetch_array($result)[0];
-                $total_pages = ceil($total_rows / $no_of_records_per_page);
-
                 // Fetching posts based on search title
-                $query = mysqli_query($con, "SELECT tblposts.id AS pid, tblposts.PostTitle AS posttitle, tblcategory.CategoryName AS category, tblsubcategory.Subcategory AS subcategory, tblposts.PostDetails AS postdetails, tblposts.PostingDate AS postingdate, tblposts.PostUrl AS url, tblposts.PostImage FROM tblposts LEFT JOIN tblcategory ON tblcategory.id = tblposts.CategoryId LEFT JOIN tblsubcategory ON tblsubcategory.SubCategoryId = tblposts.SubCategoryId WHERE tblposts.PostTitle LIKE '%$st%' AND tblposts.Is_Active = 1 LIMIT $offset, $no_of_records_per_page");
+                $query = mysqli_query($con, "SELECT tblposts.id AS pid, tblposts.PostTitle AS posttitle, tblcategory.CategoryName AS category, tblsubcategory.Subcategory AS subcategory, tblposts.PostDetails AS postdetails, tblposts.PostingDate AS postingdate, tblposts.PostUrl AS url, tblposts.PostImage FROM tblposts LEFT JOIN tblcategory ON tblcategory.id = tblposts.CategoryId LEFT JOIN tblsubcategory ON tblsubcategory.SubCategoryId = tblposts.SubCategoryId WHERE tblposts.PostTitle LIKE '%$st%' AND tblposts.Is_Active = 1");
 
                 $rowcount = mysqli_num_rows($query);
                 if ($rowcount == 0) {
@@ -74,29 +63,12 @@ include('includes/connection.php');
                     <div class="card-footer text-muted">
                         Posted on <?php echo htmlentities($row['postingdate']); ?>
                     </div>
-                </div>
-                <?php 
-                    }
-                ?>
-
-                <!-- Pagination -->
-                <ul class="pagination justify-content-center mb-4">
-                    <li class="page-item"><a href="?pageno=1" class="page-link">First</a></li>
-                    <li class="page-item <?php if ($pageno <= 1) { echo 'disabled'; } ?>">
-                        <a href="<?php if ($pageno > 1) { echo "?pageno=".($pageno - 1); } else { echo '#'; } ?>" class="page-link">Prev</a>
-                    </li>
-                    <li class="page-item <?php if ($pageno >= $total_pages) { echo 'disabled'; } ?>">
-                        <a href="<?php if ($pageno < $total_pages) { echo "?pageno=".($pageno + 1); } else { echo '#'; } ?>" class="page-link">Next</a>
-                    </li>
-                    <li class="page-item"><a href="?pageno=<?php echo $total_pages; ?>" class="page-link">Last</a></li>
-                </ul>
-                <?php } ?>
+                </div><?php }} ?>
             </div>
 
-            <!-- Sidebar Widgets Column -->
+            <!-- Sidebar-->
             <?php include('includes/sidebar.php'); ?>
         </div>
-        <!-- /.row -->
 
     </div>
     <!-- /.container -->
@@ -106,5 +78,4 @@ include('includes/connection.php');
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
-
 </html>
