@@ -105,7 +105,7 @@ if(strlen($_SESSION['login']) == 0) {
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $query = mysqli_query($con, "SELECT tblposts.id AS postid, tblposts.PostTitle AS title, tblcategory.CategoryName AS category, tblsubcategory.Subcategory AS subcategory, tblposts.Is_Approved FROM tblposts LEFT JOIN tblcategory ON tblcategory.id = tblposts.CategoryId LEFT JOIN tblsubcategory ON tblsubcategory.SubCategoryId = tblposts.SubCategoryId WHERE tblposts.Is_Active IN (0, 1) AND tblposts.Is_Approved IN (1, 0)");
+                                            $query = mysqli_query($con, "SELECT tblposts.id AS postid, tblposts.PostTitle AS title, tblcategory.CategoryName AS category, tblposts.Is_Approved FROM tblposts LEFT JOIN tblcategory ON tblcategory.id = tblposts.CategoryId WHERE tblposts.Is_Active IN (0, 1) AND tblposts.Is_Approved IN (1, 0)");
                                             $rowcount = mysqli_num_rows($query);
                                             if($rowcount == 0) {
                                             ?>

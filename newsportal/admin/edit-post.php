@@ -10,7 +10,7 @@ if(strlen($_SESSION['login']) == 0) {
     if(isset($_POST['update'])) {
         $posttitle = $_POST['posttitle'];
         $catid = $_POST['category'];
-        $subcatid = $_POST['subcategory'];
+       
         $postdetails = $_POST['postdescription'];
         $lastuptdby = $_SESSION['login'];
         $arr = explode(" ", $posttitle);
@@ -18,7 +18,7 @@ if(strlen($_SESSION['login']) == 0) {
         $status = 1;
         $postid = intval($_GET['pid']);
 
-        $query = mysqli_query($con, "UPDATE tblposts SET PostTitle='$posttitle', CategoryId='$catid', SubCategoryId='$subcatid', PostDetails='$postdetails', PostUrl='$url', Is_Active='$status', lastUpdatedBy='$lastuptdby' WHERE id='$postid'");
+        $query = mysqli_query($con, "UPDATE tblposts SET PostTitle='$posttitle', CategoryId='$catid', PostDetails='$postdetails', PostUrl='$url', Is_Active='$status', lastUpdatedBy='$lastuptdby' WHERE id='$postid'");
         
         if($query) {
             $msg = "Post updated successfully.";
@@ -98,7 +98,7 @@ if(strlen($_SESSION['login']) == 0) {
                     <!-- Fetch and Display Post Details -->
                     <?php
                     $postid = intval($_GET['pid']);
-                    $query = mysqli_query($con, "SELECT tblposts.id AS postid, tblposts.PostImage, tblposts.PostTitle AS title, tblposts.PostDetails, tblcategory.CategoryName AS category, tblcategory.id AS catid, tblsubcategory.SubCategoryId AS subcatid, tblsubcategory.Subcategory AS subcategory FROM tblposts LEFT JOIN tblcategory ON tblcategory.id = tblposts.CategoryId LEFT JOIN tblsubcategory ON tblsubcategory.SubCategoryId = tblposts.SubCategoryId WHERE tblposts.id='$postid' AND tblposts.Is_Approved IN (0,1)");
+                    $query = mysqli_query($con, "SELECT tblposts.id AS postid, tblposts.PostImage, tblposts.PostTitle AS title, tblposts.PostDetails, tblcategory.CategoryName AS category, tblcategory.id AS catid FROM tblposts LEFT JOIN tblcategory ON tblcategory.id = tblposts.CategoryId WHERE tblposts.id='$postid' AND tblposts.Is_Approved IN (0,1)");
                     while($row = mysqli_fetch_array($query)) {
                     ?>
 
@@ -116,7 +116,7 @@ if(strlen($_SESSION['login']) == 0) {
                                         <!-- Category Selection -->
                                         <div class="form-group m-b-20">
                                             <label for="category">Category</label>
-                                            <select class="form-control" name="category" id="category" onChange="getSubCat(this.value);" required>
+                                            <select class="form-control" name="category" id="category" required>
                                                 <option value="<?php echo htmlentities($row['catid']);?>"><?php echo htmlentities($row['category']);?></option>
                                                 <?php
                                                 $ret = mysqli_query($con, "SELECT id,CategoryName FROM tblcategory WHERE Is_Active=1");
@@ -125,14 +125,6 @@ if(strlen($_SESSION['login']) == 0) {
                                                     <option value="<?php echo htmlentities($result['id']);?>"><?php echo htmlentities($result['CategoryName']);?></option>
                                                 <?php } ?>
                                             </select> 
-                                        </div>
-
-                                        <!-- Subcategory Selection  -->
-                                        <div class="form-group m-b-20">
-                                            <label for="subcategory">Subcategory</label>
-                                            <select class="form-control" name="subcategory" id="subcategory" required>
-                                                <option value="<?php echo htmlentities($row['subcatid']);?>"><?php echo htmlentities($row['subcategory']);?></option>
-                                            </select>
                                         </div>
 
                                         <!-- Post Details -->

@@ -11,7 +11,6 @@ if(strlen($_SESSION['login'])==0) {
     if(isset($_POST['submit'])) {
         $posttitle = $_POST['posttitle'];
         $catid = $_POST['category'];
-        $subcatid = $_POST['subcategory'];
         $postdetails = addslashes($_POST['postdescription']);
         $postedby = $_SESSION['login'];
         $arr = explode(" ", $posttitle);
@@ -30,7 +29,7 @@ if(strlen($_SESSION['login'])==0) {
             move_uploaded_file($_FILES["postimage"]["tmp_name"], "postimages/".$imgnewfile);
 
             $status = 0; // Initially set status to 0 (not approved)
-            $query = mysqli_query($con, "INSERT INTO tblposts(PostTitle, CategoryId, SubCategoryId, PostDetails, PostUrl, Is_Active, Is_Approved, PostImage, postedBy) VALUES ('$posttitle', '$catid', '$subcatid', '$postdetails', '$url', 1, '$status', '$imgnewfile', '$postedby')");
+            $query = mysqli_query($con, "INSERT INTO tblposts(PostTitle, CategoryId, PostDetails, PostUrl, Is_Active, Is_Approved, PostImage, postedBy) VALUES ('$posttitle', '$catid', '$postdetails', '$url', 1, '$status', '$imgnewfile', '$postedby')");
             if($query) {
                 $msg = "Post submitted for approval. It will appear on the news page after admin approval.";
             } else {

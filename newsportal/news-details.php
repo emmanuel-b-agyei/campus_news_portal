@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include('settiings/connection.php');
+include('settings/connection.php');
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +30,7 @@ include('settiings/connection.php');
                 <?php
                 $pid = intval($_GET['nid']);
                 $currenturl = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-                $query = mysqli_query($con, "SELECT tblposts.PostTitle as posttitle, tblposts.PostImage, tblcategory.CategoryName as category, tblcategory.id as cid, tblsubcategory.Subcategory as subcategory, tblposts.PostDetails as postdetails, tblposts.PostingDate as postingdate, tblposts.PostUrl as url, tblposts.postedBy, tblposts.lastUpdatedBy, tblposts.UpdationDate FROM tblposts LEFT JOIN tblcategory ON tblcategory.id = tblposts.CategoryId LEFT JOIN tblsubcategory ON tblsubcategory.SubCategoryId = tblposts.SubCategoryId WHERE tblposts.id = '$pid'");
+                $query = mysqli_query($con, "SELECT tblposts.PostTitle as posttitle, tblposts.PostImage, tblcategory.CategoryName as category, tblcategory.id as cid, tblposts.PostDetails as postdetails, tblposts.PostingDate as postingdate, tblposts.PostUrl as url, tblposts.postedBy, tblposts.lastUpdatedBy, tblposts.UpdationDate FROM tblposts LEFT JOIN tblcategory ON tblcategory.id = tblposts.CategoryId  WHERE tblposts.id = '$pid'");
 
                 while ($row = mysqli_fetch_array($query)) {
                 ?>
@@ -41,8 +41,7 @@ include('settiings/connection.php');
                         <h2 class="card-title"><?php echo htmlentities($row['posttitle']);?></h2>
                         <!-- Category -->
                         <a class="badge bg-secondary text-decoration-none link-light" href="category.php?catid=<?php echo htmlentities($row['cid'])?>" style="color:#fff"><?php echo htmlentities($row['category']);?></a>
-                        <!-- Subcategory -->
-                        <a class="badge bg-secondary text-decoration-none link-light" style="color:#fff"><?php echo htmlentities($row['subcategory']);?></a>
+                       
                         <p>
                             <b>Posted by </b> <?php echo htmlentities($row['postedBy']);?> on <?php echo htmlentities($row['postingdate']);?> |
                             <?php if ($row['lastUpdatedBy'] != ''): ?>

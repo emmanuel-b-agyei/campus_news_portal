@@ -65,8 +65,8 @@ if (isset($_POST['login'])) {
                         <div class="m-t-40 account-pages">
                             <div class="text-center account-logo-box">
                                 <h2 class="text-uppercase">
-                                    <a href="index.html" class="text-success">
-                                        <span><img src="assets/images/logo.png" alt="" height="56"></span>
+                                    <a href="index.php" class="" style="font-weight: bold; font-size: 30px; color: white;">
+                                    CAMPUS NEWS PORTAL
                                     </a>
                                 </h2>
                             </div>
