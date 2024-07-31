@@ -13,18 +13,30 @@
                         <span> Dashboard </span>
                     </a>
                 </li>
+
+                <!-- Posts Section -->
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect">
+                        <i class="mdi mdi-format-list-bulleted"></i>
+                        <span> Posts </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="list-unstyled">
+                        <li><a href="add-post.php">Add Posts</a></li>
+                        <li><a href="manage-posts.php">Manage Posts</a></li>
+                    </ul>
+                </li>  
                 
                 <!-- Sub-admin Section: Visible only for admin users -->
                 <?php if($_SESSION['utype'] == '1'): ?>
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect">
                         <i class="mdi mdi-format-list-bulleted"></i>
-                        <span> Sub-admins </span>
+                        <span> Editors </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <ul class="list-unstyled">
-                        <li><a href="add-subadmins.php">Add Sub-admin</a></li>
-                        <li><a href="manage-subadmins.php">Manage Sub-admin</a></li>
+                        <li><a href="add-subadmins.php">Add Editor</a></li>
                     </ul>
                 </li>
                 <?php endif; ?>
@@ -38,48 +50,20 @@
                     </a>
                     <ul class="list-unstyled">
                         <li><a href="add-category.php">Add Category</a></li>
-                        <li><a href="manage-categories.php">Manage Category</a></li>
                     </ul>
                 </li>
 
-                <!-- Posts Section -->
+                <!-- About us Section -->
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect">
                         <i class="mdi mdi-format-list-bulleted"></i>
-                        <span> Posts (News) </span>
+                        <span> About us </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <ul class="list-unstyled">
-                        <li><a href="add-post.php">Add Posts</a></li>
-                        <li><a href="manage-posts.php">Manage Posts</a></li>
-                        <li><a href="trash-posts.php">Trash Posts</a></li>
-                    </ul>
-                </li>  
-
-                <!-- Comments Section -->
-                <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect">
-                        <i class="mdi mdi-format-list-bulleted"></i>
-                        <span> Comments </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <ul class="list-unstyled">
-                        <li><a href="unapprove-comment.php">Waiting for Approval</a></li>
-                        <li><a href="manage-comments.php">Approved Comments</a></li>
-                    </ul>
+                        <li><a href="../../about-us.php">About us</a></li>
+                </ul>
                 </li>   
-
-                <!-- Pages Section -->
-                <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect">
-                        <i class="mdi mdi-format-list-bulleted"></i>
-                        <span> Pages </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <ul class="list-unstyled">
-                        <li><a href="aboutus.php">About us</a></li>
-                    </ul>
-                </li>
             </ul>
         </div>
         <!-- Sidebar -->

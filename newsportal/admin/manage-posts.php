@@ -1,22 +1,25 @@
 <?php 
 session_start();
-include('includes/config.php');
+include('../settings/connection.php');
 error_reporting(0);
-if(strlen($_SESSION['login']) == 0)
-{ 
+
+// Check if the user is logged in
+if(strlen($_SESSION['login']) == 0) {
     header('location:index.php');
-}
-else {
+} else {
+
+    // Handle post deletion
     if(isset($_GET['action']) && $_GET['action'] == 'del') {
         $postid = intval($_GET['pid']);
         $query = mysqli_query($con, "UPDATE tblposts SET Is_Active = 0 WHERE id='$postid'");
         if($query) {
-            $msg = "Post deleted ";
+            $msg = "Post deleted";
         } else {
             $error = "Something went wrong. Please try again.";    
         } 
     }
 
+    // Handle post approval
     if($_GET['action'] == 'approve') {
         $postid = intval($_GET['pid']);
         $query = mysqli_query($con, "UPDATE tblposts SET Is_Approved = 1 WHERE id='$postid'");
@@ -27,22 +30,17 @@ else {
         } 
     }
 
-
-    if (strlen($_SESSION['login']) == 0) {
-        header('location:index.php');
-    } else {
-        if (isset($_GET['action']) && $_GET['action'] == 'del') {
-            $postid = intval($_GET['pid']);
-            $query = mysqli_query($con, "DELETE FROM tblposts WHERE id='$postid'");
-            if ($query) {
-                $msg = "Post deleted";
-            } else {
-                $error = "Something went wrong. Please try again.";
-            }
+    // Handle permanent post deletion (if needed)
+    if (isset($_GET['action']) && $_GET['action'] == 'del') {
+        $postid = intval($_GET['pid']);
+        $query = mysqli_query($con, "DELETE FROM tblposts WHERE id='$postid'");
+        if ($query) {
+            $msg = "Post deleted";
+        } else {
+            $error = "Something went wrong. Please try again.";
         }
     }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,15 +65,21 @@ else {
 
 <body class="fixed-left">
     <div id="wrapper">
-        <?php include('includes/topheader.php');?>
-        <?php include('includes/leftsidebar.php');?>
+        <!-- Top Bar Start -->
+        <?php include('includes/topheader.php'); ?>
+        <!-- Left Sidebar Start -->
+        <?php include('includes/leftsidebar.php'); ?>
+        <!-- Left Sidebar End -->
+
         <div class="content-page">
+            <!-- Start content -->
             <div class="content">
                 <div class="container">
+                    <!-- Page Title and Breadcrumbs -->
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="page-title-box">
-                                <h4 class="page-title">Manage Posts </h4>
+                                <h4 class="page-title">Manage Posts</h4>
                                 <ol class="breadcrumb p-0 m-0">
                                     <li><a href="#">Admin</a></li>
                                     <li><a href="#">Posts</a></li>
@@ -85,6 +89,7 @@ else {
                             </div>
                         </div>
                     </div>
+                    <!-- Manage Posts Table -->
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card-box">
@@ -100,27 +105,32 @@ else {
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $query = mysqli_query($con, "SELECT tblposts.id as postid, tblposts.PostTitle as title, tblcategory.CategoryName as category, tblsubcategory.Subcategory as subcategory, tblposts.Is_Approved FROM tblposts LEFT JOIN tblcategory ON tblcategory.id = tblposts.CategoryId LEFT JOIN tblsubcategory ON tblsubcategory.SubCategoryId = tblposts.SubCategoryId WHERE tblposts.Is_Active in (0, 1) AND tblposts.Is_Approved in (1, 0)");
+                                            $query = mysqli_query($con, "SELECT tblposts.id AS postid, tblposts.PostTitle AS title, tblcategory.CategoryName AS category, tblsubcategory.Subcategory AS subcategory, tblposts.Is_Approved FROM tblposts LEFT JOIN tblcategory ON tblcategory.id = tblposts.CategoryId LEFT JOIN tblsubcategory ON tblsubcategory.SubCategoryId = tblposts.SubCategoryId WHERE tblposts.Is_Active IN (0, 1) AND tblposts.Is_Approved IN (1, 0)");
                                             $rowcount = mysqli_num_rows($query);
-                                            if($rowcount == 0)
-                                            {
+                                            if($rowcount == 0) {
                                             ?>
                                                 <tr>
                                                     <td colspan="4" align="center"><h3 style="color:red">No unapproved posts found</h3></td>
                                                 </tr>
                                             <?php 
                                             } else {
-                                                while($row = mysqli_fetch_array($query))
-                                                {
+                                                while($row = mysqli_fetch_array($query)) {
                                             ?>
                                                     <tr>
-                                                        <td><b><?php echo htmlentities($row['title']);?></b></td>
-                                                        <td><?php echo htmlentities($row['category'])?></td>
+                                                        <td><b><?php echo htmlentities($row['title']); ?></b></td>
+                                                        <td><?php echo htmlentities($row['category']); ?></td>
                                                         <td><?php echo ($row['Is_Approved'] == 1) ? 'Approved' : 'Not Approved'; ?></td>
                                                         <td>
-                                                            <a href="edit-post.php?pid=<?php echo htmlentities($row['postid']);?>"><i class="fa fa-pencil" style="color: green";></i></a> 
-                                                            &nbsp;<a href="manage-posts.php?pid=<?php echo htmlentities($row['postid']);?>&action=approve" onclick="return confirmApprove()">Approve</a>
-                                                            &nbsp;<a href="manage-posts.php?pid=<?php echo htmlentities($row['postid']);?>&action=del" onclick="return confirmDelete()">Delete</a>
+                                                            <a href="edit-post.php?pid=<?php echo htmlentities($row['postid']); ?>"><i class="fa fa-pencil" style="color: green;"></i></a>
+                                                            <?php 
+                                                            if ($row['Is_Approved']==1) {
+                                                                ?>
+                                                                &nbsp;<a href="manage-posts.php?pid=<?php echo htmlentities($row['postid']); ?>&action=approve" onclick= <?php echo("Already Approved")?>>Approved</a>
+                                                            <?php } 
+                                                            else{ ?>
+                                                                &nbsp;<a href="manage-posts.php?pid=<?php echo htmlentities($row['postid']); ?>&action=approve" onclick="return confirmApprove()">Approve</a>
+                                                            <?php }?>
+                                                            &nbsp;<a href="manage-posts.php?pid=<?php echo htmlentities($row['postid']); ?>&action=del" onclick="return confirmDelete()">Delete</a>
                                                         </td>
                                                     </tr>
                                             <?php
@@ -136,6 +146,7 @@ else {
                 </div> 
             </div>
         </div>
+        <!-- Include JavaScript files -->
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/detect.js"></script>
@@ -157,10 +168,12 @@ else {
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
         <script>
+            // Confirm deletion of a post
             function confirmDelete() {
                 return confirm('Do you really want to delete?');
             }
 
+            // Confirm approval of a post
             function confirmApprove() {
                 return confirm('Approve this post?');
             }

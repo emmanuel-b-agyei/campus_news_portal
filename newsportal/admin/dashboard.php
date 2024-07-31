@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('includes/config.php');
+include('../settings/connection.php');
 
 // Redirect to login if not logged in
 if(strlen($_SESSION['login'])==0) { 
