@@ -1,4 +1,4 @@
 <?php 
 session_start();
 include('settings/connection.php');
-header('Location: newsportal');
+header('Location: news-home.php');
