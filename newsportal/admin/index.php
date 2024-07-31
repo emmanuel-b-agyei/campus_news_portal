@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('includes/config.php');
+include('../settings/connection.php');
 
 $errorMessage = "";
 
@@ -16,14 +16,14 @@ if (isset($_POST['login'])) {
     mysqli_stmt_store_result($query);
 
     if (mysqli_stmt_num_rows($query) == 0) {
-        $errorMessage = "Username does not exist.";
+        $errorMessage = "Incorrect username or password!";
     } else {
         // Verify password
         mysqli_stmt_bind_result($query, $dbUsername, $dbEmail, $dbPassword, $userType);
         mysqli_stmt_fetch($query);
         
         if ($dbPassword !== $password) {
-            $errorMessage = "Incorrect password.";
+            $errorMessage = "Incorrect username or password!";
         } else {
             // Successful login
             $_SESSION['login'] = $username;
@@ -74,20 +74,20 @@ if (isset($_POST['login'])) {
                                 <form class="form-horizontal" method="post">
                                     <div class="form-group">
                                         <div class="col-xs-12">
+                                            <div>
+                                                <?php if ($errorMessage == "Incorrect username or password!") { ?>
+                                                    <small class="text-danger"><?php echo $errorMessage; ?></small>
+                                                <?php } ?>
+                                            </div> <br>
+                                            
                                             <label for="username">Username or email</label>
                                             <input class="form-control" type="text" name="username" id="username" placeholder="Username or email" required>
-                                            <?php if ($errorMessage == "Username does not exist.") { ?>
-                                                <small class="text-danger"><?php echo $errorMessage; ?></small>
-                                            <?php } ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-xs-12">
                                             <label for="password">Password</label>
                                             <input class="form-control" type="password" name="password" id="password" placeholder="Password" required>
-                                            <?php if ($errorMessage == "Incorrect password.") { ?>
-                                                <small class="text-danger"><?php echo $errorMessage; ?></small>
-                                            <?php } ?>
                                         </div>
                                     </div>
                                     
