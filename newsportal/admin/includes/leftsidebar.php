@@ -36,7 +36,7 @@
                         <span class="menu-arrow"></span>
                     </a>
                     <ul class="list-unstyled">
-                        <li><a href="add-subadmins.php">Add Editor</a></li>
+                        <li><a href="add-editor.php">Add Editor</a></li>
                     </ul>
                 </li>
                 <?php endif; ?>

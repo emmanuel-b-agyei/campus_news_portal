@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $username = htmlspecialchars($_POST['sadminusername']);
     $email = htmlspecialchars($_POST['emailid']);
     $password = (($_POST['pwd'])); 
+
     
     //Frontend validations
     $errors = [];
@@ -27,9 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     if (!preg_match("/^(?=.*[!@#$%^&*()_+\-=\[\]{};':\\|,.<>\/?])(?=.*[a-zA-Z0-9]).{8,}$/", $password)) {
         $errors[] = "Password must be at least 8 characters long and must contain at least a special character.";
-    }
-
-    
+    } 
     
     if (empty($errors)) {
         // Backend checks for username and email availability
@@ -139,6 +138,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                             <div class="form-group">
                                                 <label for="password">Password</label>
                                                 <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter password" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="password">Comfirm Password</label>
+                                                <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Re-enter password" required>
                                             </div>
 
                                             <div class="form-group">
