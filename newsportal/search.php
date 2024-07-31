@@ -1,7 +1,7 @@
 <?php 
 session_start();
 error_reporting(0);
-include('includes/connection.php');
+include('settings/connection.php');
 ?>
 
 <!DOCTYPE html>

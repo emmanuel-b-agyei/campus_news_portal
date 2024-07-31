@@ -3,7 +3,7 @@
 session_start();
 
 // Include configuration file for database connection
-include('includes/connection.php');
+include('settings/connection.php');
 ?>
 
 <!DOCTYPE html>
