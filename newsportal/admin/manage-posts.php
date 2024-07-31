@@ -7,24 +7,24 @@ error_reporting(0);
 if(strlen($_SESSION['login']) == 0) {
     header('location:index.php');
 } else {
-
-    // Handle post deletion
-    if(isset($_GET['action']) && $_GET['action'] == 'del') {
-        $postid = intval($_GET['pid']);
-        $query = mysqli_query($con, "UPDATE tblposts SET Is_Active = 0 WHERE id='$postid'");
-        if($query) {
-            $msg = "Post deleted";
-        } else {
-            $error = "Something went wrong. Please try again.";    
-        } 
-    }
-
     // Handle post approval
     if($_GET['action'] == 'approve') {
         $postid = intval($_GET['pid']);
         $query = mysqli_query($con, "UPDATE tblposts SET Is_Approved = 1 WHERE id='$postid'");
         if($query) {
             $msg = "Post approved successfully";
+        } else {
+            $error = "Something went wrong. Please try again.";    
+        } 
+    }
+
+    
+    // Handle post deletion
+    if(isset($_GET['action']) && $_GET['action'] == 'del') {
+        $postid = intval($_GET['pid']);
+        $query = mysqli_query($con, "UPDATE tblposts SET Is_Active = 0 WHERE id='$postid'");
+        if($query) {
+            $msg = "Post deleted";
         } else {
             $error = "Something went wrong. Please try again.";    
         } 

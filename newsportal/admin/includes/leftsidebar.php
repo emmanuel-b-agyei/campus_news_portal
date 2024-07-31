@@ -20,7 +20,7 @@
                         <i class="mdi mdi-format-list-bulleted"></i>
                         <span> Posts </span>
                         <span class="menu-arrow"></span>
-                    </a>
+                    </a>  
                     <ul class="list-unstyled">
                         <li><a href="add-post.php">Add Posts</a></li>
                         <li><a href="manage-posts.php">Manage Posts</a></li>

@@ -71,24 +71,6 @@ if(strlen($_SESSION['login'])==0) {
 
                     <!-- Dashboard Widgets -->
                     <div class="row">
-
-                        <!-- Categories Listed -->
-                        <div class="col-lg-4 col-md-4 col-sm-6">
-                            <a href="manage-categories.php">
-                                <div class="card-box widget-box-one">
-                                    <i class="mdi mdi-chart-areaspline widget-one-icon"></i>
-                                    <div class="wigdet-one-content">
-                                        <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Statistics">Categories Listed</p>
-                                        <?php 
-                                        $query = mysqli_query($con, "SELECT * FROM tblcategory WHERE Is_Active=1");
-                                        $countcat = mysqli_num_rows($query);
-                                        ?>
-                                        <h2><?php echo htmlentities($countcat); ?></h2>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
                         <!-- Live News -->
                         <div class="col-lg-4 col-md-4 col-sm-6">
                             <a href="manage-posts.php">
@@ -97,7 +79,24 @@ if(strlen($_SESSION['login'])==0) {
                                     <div class="wigdet-one-content">
                                         <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="User This Month">Live News</p>
                                         <?php 
-                                        $query = mysqli_query($con, "SELECT * FROM tblposts WHERE Is_Active=1");
+                                        $query = mysqli_query($con, "SELECT * FROM tblposts WHERE Is_Approved=1");
+                                        $countposts = mysqli_num_rows($query);
+                                        ?>
+                                        <h2><?php echo htmlentities($countposts); ?></h2>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Unapproved News -->
+                        <div class="col-lg-4 col-md-4 col-sm-6">
+                            <a href="manage-posts.php">
+                                <div class="card-box widget-box-one">
+                                    <i class="mdi mdi-layers widget-one-icon"></i>
+                                    <div class="wigdet-one-content">
+                                        <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="User This Month">Unapproved News</p>
+                                        <?php 
+                                        $query = mysqli_query($con, "SELECT * FROM tblposts WHERE Is_Approved=0");
                                         $countposts = mysqli_num_rows($query);
                                         ?>
                                         <h2><?php echo htmlentities($countposts); ?></h2>
@@ -114,7 +113,7 @@ if(strlen($_SESSION['login'])==0) {
                                     <div class="wigdet-one-content">
                                         <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="User This Month">Trash News</p>
                                         <?php 
-                                        $query = mysqli_query($con, "SELECT * FROM tblposts WHERE Is_Active=0");
+                                        $query = mysqli_query($con, "SELECT * FROM tblposts WHERE Is_Active=0 and Is_Approved = 1");
                                         $countposts = mysqli_num_rows($query);
                                         ?>
                                         <h2><?php echo htmlentities($countposts); ?></h2>
@@ -122,6 +121,41 @@ if(strlen($_SESSION['login'])==0) {
                                 </div>
                             </a>
                         </div>
+
+                         <!-- Categories Listed -->
+                         <div class="col-lg-4 col-md-4 col-sm-6">
+                            <a href="manage-categories.php">
+                                <div class="card-box widget-box-one">
+                                    <i class="mdi mdi-chart-areaspline widget-one-icon"></i>
+                                    <div class="wigdet-one-content">
+                                        <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Statistics">Categories Listed</p>
+                                        <?php 
+                                        $query = mysqli_query($con, "SELECT * FROM tblcategory WHERE Is_Active=1");
+                                        $countcat = mysqli_num_rows($query);
+                                        ?>
+                                        <h2><?php echo htmlentities($countcat); ?></h2>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                         <!-- Categories Listed -->
+                         <div class="col-lg-4 col-md-4 col-sm-6">
+                            <a href="manage-categories.php">
+                                <div class="card-box widget-box-one">
+                                    <i class="mdi mdi-chart-areaspline widget-one-icon"></i>
+                                    <div class="wigdet-one-content">
+                                        <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Statistics">Number of Editors</p>
+                                        <?php 
+                                        $query = mysqli_query($con, "SELECT * FROM tbladmin WHERE userType=0");
+                                        $countcat = mysqli_num_rows($query);
+                                        ?>
+                                        <h2><?php echo htmlentities($countcat); ?></h2>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
                     </div>
                     <!-- End Dashboard Widgets -->
                 </div> <!-- Container -->
