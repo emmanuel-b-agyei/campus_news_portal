@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('includes/connection.php');
+include('settings/connection.php');
 error_reporting(0);
 
 // Check if the user is logged in
