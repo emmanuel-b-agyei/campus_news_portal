@@ -10,7 +10,7 @@ if (!defined('DB_PASS')) {
     define('DB_PASS','');
 }
 if (!defined('DB_NAME')) {
-    define('DB_NAME','portal');
+    define('DB_NAME','newsportal');
 }
 
 // Create database connection
