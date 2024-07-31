@@ -1,7 +1,3 @@
-<?php
-include('includes/config.php');
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,17 +25,6 @@ include('includes/config.php');
     <!-- Page Content -->
     <div class="container">
 
-<?php 
-$pagetype='aboutus';
-$query=mysqli_query($con,"select PageTitle,Description from tblpages where PageName='$pagetype'");
-while($row=mysqli_fetch_array($query))
-{
-
-?>
-      <h1 class="mt-4 mb-3"><?php echo htmlentities($row['PageTitle'])?>
-  
-      </h1>
-
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
           <a href="index.php">Home</a>
@@ -49,14 +34,12 @@ while($row=mysqli_fetch_array($query))
 
       <!-- Intro Content -->
       <div class="row">
-
         <div class="col-lg-12">
-
-          <p><?php echo $row['Description'];?></p>
+        Welcome to the Campus News Portal. This platform is designed to provide students with a seamless experience for sharing and accessing news articles related to campus life and global updates. With user roles and authentication in place, including admins, editors, and registered users, we ensure a secure and engaging environment for news submission and publication. Our mission is to enhance communication and information sharing within the Ashesi community and beyond. Join us in exploring the latest news, engaging in discussions, and staying informed about campus matters and the world around us.
         </div>
       </div>
       <!-- /.row -->
-<?php } ?>
+
     
     </div>
     
