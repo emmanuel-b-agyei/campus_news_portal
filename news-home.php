@@ -35,17 +35,7 @@ include('settings/connection.php');
             <!-- Blog Entries Column -->
             <div class="col-md-8">
 
-                <!-- Pagination Logic -->
                 <?php
-                $page_number = isset($_GET['page_number']) ? (int)$_GET['page_number'] : 1;
-                $no_of_records_per_page = 8;
-                $offset = ($page_number - 1) * $no_of_records_per_page;
-
-                $total_pages_sql = "SELECT COUNT(*) FROM tblposts";
-                $result = mysqli_query($con, $total_pages_sql);
-                $total_rows = mysqli_fetch_array($result)[0];
-                $total_pages = ceil($total_rows / $no_of_records_per_page);
-
                 // Fetch approved posts
                 $query = mysqli_query($con, "SELECT tblposts.id AS pid, tblposts.PostTitle AS posttitle, tblposts.PostImage, 
                         tblcategory.CategoryName AS category, tblcategory.id AS cid, tblposts.PostDetails AS postdetails, tblposts.PostingDate AS postingdate, tblposts.PostUrl AS url 
@@ -74,23 +64,6 @@ include('settings/connection.php');
                         </div>
                     </div>
                 <?php } ?>
-
-                <!-- Pagination Links -->
-                <ul class="pagination justify-content-center mb-4">
-                    <li class="page-item <?php if ($page_number <= 1) { echo 'disabled'; } ?>">
-                        <a href="?page_number=1" class="page-link">First</a>
-                    </li>
-                    <li class="page-item <?php if ($page_number <= 1) { echo 'disabled'; } ?>">
-                        <a href="<?php if ($page_number <= 1) { echo '#'; } else { echo "?page_number=" . ($page_number - 1); } ?>" class="page-link">Prev</a>
-                    </li>
-                    <li class="page-item <?php if ($page_number >= $total_pages) { echo 'disabled'; } ?>">
-                        <a href="<?php if ($page_number >= $total_pages) { echo '#'; } else { echo "?page_number=" . ($page_number + 1); } ?>" class="page-link">Next</a>
-                    </li>
-                    <li class="page-item <?php if ($page_number >= $total_pages) { echo 'disabled'; } ?>">
-                        <a href="?page_number=<?php echo $total_pages; ?>" class="page-link">Last</a>
-                    </li>
-                </ul>
-
             </div>
 
             <!-- Sidebar -->
