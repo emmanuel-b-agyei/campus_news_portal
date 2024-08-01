@@ -42,8 +42,7 @@ include('settings/connection.php');
                         FROM tblposts 
                         LEFT JOIN tblcategory ON tblcategory.id = tblposts.CategoryId 
                         WHERE tblposts.IS_Approved = 1 
-                        ORDER BY tblposts.id DESC 
-                        LIMIT $offset, $no_of_records_per_page");
+                        ORDER BY tblposts.id DESC ");
 
                 // Display posts
                 while ($row = mysqli_fetch_array($query)) {
