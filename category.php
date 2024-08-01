@@ -35,7 +35,7 @@ include('settings/connection.php');
                 }
 
                 // Fetch posts for the current category
-                $query = mysqli_query($con, "SELECT tblposts.id as pid, tblposts.PostTitle as posttitle, tblposts.PostImage, tblcategory.CategoryName as category, tblsubcategory.Subcategory as subcategory, tblposts.PostDetails as postdetails, tblposts.PostingDate as postingdate, tblposts.PostUrl as url FROM tblposts LEFT JOIN tblcategory ON tblcategory.id=tblposts.CategoryId LEFT JOIN tblsubcategory ON tblsubcategory.SubCategoryId=tblposts.SubCategoryId WHERE tblposts.CategoryId='" . $_SESSION['catid'] . "' AND tblposts.Is_Active=1 ORDER BY tblposts.id");
+                $query = mysqli_query($con, "SELECT tblposts.id as pid, tblposts.PostTitle as posttitle, tblposts.PostImage, tblcategory.CategoryName as category, tblposts.PostDetails as postdetails, tblposts.PostingDate as postingdate, tblposts.PostUrl as url FROM tblposts LEFT JOIN tblcategory ON tblcategory.id=tblposts.CategoryId WHERE tblposts.CategoryId='" . $_SESSION['catid'] . "' AND tblposts.Is_Active=1 ORDER BY tblposts.id");
 
                 $rowcount = mysqli_num_rows($query);
                 if ($rowcount == 0) {
