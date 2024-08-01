@@ -45,31 +45,11 @@ INSERT INTO `tblcategory` (`id`, `CategoryName`, `Description`, `PostingDate`, `
 (6, 'Politics', 'Politics', '2024-01-11 18:30:00', '2024-01-31 05:43:25', 1),
 (7, 'Business', 'Business', '2024-01-11 18:30:00', '2024-01-31 05:43:25', 1),
 (8, 'COVID-19', 'COVID-19', '2024-01-11 18:30:00', '2024-01-31 05:43:25', 1);
---
--- Table structure for table `tblcomments`
---
 
-CREATE TABLE `tblcomments` (
-  `id` int(11) NOT NULL,
-  `postId` int(11) DEFAULT NULL,
-  `name` varchar(120) DEFAULT NULL,
-  `email` varchar(150) DEFAULT NULL,
-  `comment` mediumtext DEFAULT NULL,
-  `postingDate` timestamp NULL DEFAULT current_timestamp(),
-  `status` int(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `tblcomments`
---
-INSERT INTO `tblcomments` (`id`, `postId`, `name`, `email`, `comment`, `postingDate`, `status`) VALUES
-(1, 1, "Emmanuel", "elminosunshine@gmail.com", "Is that really?", CURRENT_TIMESTAMP, 1);
-
---
--- Table structure for table `tblpages`
---
-
 -- Table structure for table `tblposts`
+--
 
 CREATE TABLE `tblposts` (
   `id` int(11) NOT NULL,
