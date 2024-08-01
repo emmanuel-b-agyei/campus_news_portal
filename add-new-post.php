@@ -3,41 +3,38 @@ session_start();
 include('settings/connection.php');
 error_reporting(0);
 
-// Check if the user is logged in
-if(strlen($_SESSION['login']) == 0) { 
-    header('location:index.php');
-} else {
-    // For adding a post
-    if(isset($_POST['submit'])) {
-        $posttitle = $_POST['posttitle'];
-        $catid = $_POST['category'];
-        $postdetails = addslashes($_POST['postdescription']);
-        $postedby = $_SESSION['login'];
-        $arr = explode(" ", $posttitle);
-        $url = implode("-", $arr);
-        $imgfile = $_FILES["postimage"]["name"];
-        
-        // Get the image extension
-        $extension = substr($imgfile, strlen($imgfile) - 4, strlen($imgfile));
-        // Allowed extensions
-        $allowed_extensions = array(".jpg", "jpeg", ".png", ".gif");
-        if(!in_array($extension, $allowed_extensions)) {
-            echo "<script>alert('Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
-        } else {
-            $imgnewfile = md5($imgfile).$extension;
-            // Move image into directory
-            move_uploaded_file($_FILES["postimage"]["tmp_name"], "admin/postimages/".$imgnewfile);
 
-            $status = 0; // Initially set status to 0 (not approved)
-            $query = mysqli_query($con, "INSERT INTO tblposts(PostTitle, CategoryId, PostDetails, PostUrl, Is_Active, Is_Approved, PostImage, postedBy) VALUES ('$posttitle', '$catid', '$postdetails', '$url', 1, '$status', '$imgnewfile', '$postedby')");
-            if($query) {
-                $msg = "Post submitted for approval. It will appear on the news page after admin approval.";
-            } else {
-                $error = "Something went wrong. Please try again.";    
-            }
+// For adding a post
+if(isset($_POST['submit'])) {
+    $posttitle = $_POST['posttitle'];
+    $catid = $_POST['category'];
+    $postdetails = addslashes($_POST['postdescription']);
+    $postedby = $_SESSION['login'];
+    $arr = explode(" ", $posttitle);
+    $url = implode("-", $arr);
+    $imgfile = $_FILES["postimage"]["name"];
+    
+    // Get the image extension
+    $extension = substr($imgfile, strlen($imgfile) - 4, strlen($imgfile));
+    // Allowed extensions
+    $allowed_extensions = array(".jpg", "jpeg", ".png", ".gif");
+    if(!in_array($extension, $allowed_extensions)) {
+        echo "<script>alert('Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
+    } else {
+        $imgnewfile = md5($imgfile).$extension;
+        // Move image into directory
+        move_uploaded_file($_FILES["postimage"]["tmp_name"], "admin/postimages/".$imgnewfile);
+
+        $status = 0; // Initially set status to 0 (not approved)
+        $query = mysqli_query($con, "INSERT INTO tblposts(PostTitle, CategoryId, PostDetails, PostUrl, Is_Active, Is_Approved, PostImage, postedBy) VALUES ('$posttitle', '$catid', '$postdetails', '$url', 1, '$status', '$imgnewfile', '$postedby')");
+        if($query) {
+            $msg = "Post submitted for approval. It will appear on the news page after admin approval.";
+        } else {
+            $error = "Something went wrong. Please try again.";    
         }
     }
 }
+
 ?>
 
 <!DOCTYPE html>
